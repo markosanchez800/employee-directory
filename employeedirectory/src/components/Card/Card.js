@@ -1,19 +1,32 @@
 import React from 'react';
 import './style.css';
+import Table from 'react-bootstrap/Table'
 
-
-function Card(props){
+function Card(props) {
     return (
-        <div className='card'>
-            <div className='img-container'>
-                <img alt={props.name} src={props.picture} /> 
-            </div>
-            <div className='name'>{props.lastname},{props.firstname}</div>
-            <div className='age'>{props.age}</div>
-            <div className='email'>{props.email}</div>
-            <div className='phone'>{props.phone}</div>
-       </div>
-    );
+        <Table striped bordered hover>
+            <thead>
+                <tr>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                {props.results.map(results => (
+                    <tr>
+                        <td><img alt={results.name.first} src={results.picture.medium} /> </td>
+                        <td>{results.name.last}, {results.name.first}</td>
+                        <td>{results.dob.age}</td>
+                        <td>{results.email}</td>
+                        <td>{results.phone}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </Table>
+    )
 }
 
 export default Card;

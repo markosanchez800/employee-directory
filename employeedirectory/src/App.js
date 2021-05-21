@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from "react";
+import Card from './components/Card/Card';
+import Header from './components/Header/Header';
+import Searchbar from './components/Searchbar/Searchbar'
+import API from "./utils/API";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+class App extends Component {
+  state = {
+    users: "",
+    results: [],
+  }
+
+  componentDidMount(){
+    this.getUsers();
+  }
+
+  getUsers = () => {
+    API.getUsers()
+    .then((res) => {
+      console.log(res);
+    this.setState({results: res.data.results})
+    }).catch(err => console.log(err));
+  }
+  
+    render(){
+    return (
+    <div>
+  
+    <Header /> 
+    <Searchbar />
+    <Card 
+    results={this.state.results}
+    />
     </div>
-  );
+    );
+  }
 }
-
 export default App;
