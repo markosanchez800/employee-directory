@@ -15,15 +15,13 @@ function Card(props) {
                 </tr>
             </thead>
             <tbody>
-                {props.results.map(results => (
                     <tr>
-                        <td><img alt={results.name.first} src={results.picture.medium} /> </td>
-                        <td>{results.name.last}, {results.name.first}</td>
-                        <td>{results.dob.age}</td>
-                        <td>{results.email}</td>
-                        <td>{results.phone}</td>
+                        <td><img src={props.photo} alt={props.name} /> </td>
+                        <td>{props.name}</td>
+                        <td>{props.age}</td>
+                        <td>{props.email}</td>
+                        <td>{props.phone}</td>
                     </tr>
-                ))}
             </tbody>
         </Table>
     )
