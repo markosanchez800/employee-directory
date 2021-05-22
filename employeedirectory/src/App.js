@@ -12,6 +12,7 @@ function App() {
 
   const [search, setSearch] = useState("");
   const [userState, setUser] = useState([]);
+  const [nueSearch, setNue] = useState([]);
 
 
   const handleInputChange = event => {
@@ -25,7 +26,7 @@ function App() {
       .includes(value);
     })
     console.log(filterSearch);
-    setUser(filterSearch);
+    setNue(filterSearch);
     setSearch(value);
   }
 
@@ -34,6 +35,7 @@ function App() {
       .then(res => {
         console.log(res.data.results)
         setUser(res.data.results)
+        setNue(res.data.results)
       })
       .catch(err => console.log(err));
   }, []);
@@ -43,7 +45,7 @@ function App() {
       <Header />
       <Searchbar search={search} handleInputChange={handleInputChange} />
       <TableHead />
-      {userState.map(user =>
+      {nueSearch.map(user =>
         <Card
           photo={user.picture.medium}
           name={user.name.first + ' ' + user.name.last}
