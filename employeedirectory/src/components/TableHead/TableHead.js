@@ -1,20 +1,18 @@
 import React from 'react';
-import Table from 'react-bootstrap/Table'
 
-function TableHead (){
+function TableHead(props){
 return (
-    <Table striped bordered hover> 
 <thead>
 <tr>
     <th>Photo</th>
-    <th>Name</th>
+    <th onClick={props.sortUsers}>Name</th>
     <th>Age</th>
     <th>Email</th>
     <th>Phone</th>
 </tr>
 </thead>
 
-</Table>
+
 );
 }
 

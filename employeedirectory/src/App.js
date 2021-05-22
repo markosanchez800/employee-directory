@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Searchbar from './components/Searchbar/Searchbar'
 import TableHead from './components/TableHead/TableHead'
 import API from "./utils/API";
+import Table from 'react-bootstrap/Table'
 //import BootstrapTable from 'react-bootstrap-table-next';
 
 
@@ -40,11 +41,20 @@ function App() {
       .catch(err => console.log(err));
   }, []);
 
+  const sortUsers = () => {
+    const nueRes = [...nueSearch]
+    const sortedUsers = nueRes.sort((a,b)=>
+    a.name.first > b.name.first ? 1 : -1)
+    setNue(sortedUsers);
+  }
+
   return (
     <div>
       <Header />
       <Searchbar search={search} handleInputChange={handleInputChange} />
-      <TableHead />
+      <Table striped bordered hover>
+      <TableHead sortUsers={sortUsers}/>
+      <tbody>
       {nueSearch.map(user =>
         <Card
           photo={user.picture.medium}
@@ -54,6 +64,8 @@ function App() {
           phone={user.phone}
         />
       )}
+      </tbody>
+      </Table>
     </div>
   );
 }
